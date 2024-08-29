@@ -11,7 +11,9 @@ import SwiftUI
 struct OtakuSUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                MainView()
+            }
         }
     }
 }
