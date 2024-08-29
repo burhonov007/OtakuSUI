@@ -23,6 +23,15 @@ struct MainView: View {
                         name: vm.animeList[index]["name"].stringValue,
                         seriesCount: vm.animeList[index]["series"].stringValue
                     )
+                    .onAppear {
+                        if index == vm.animeList.count - 1 {
+                            self.isLoading = true
+                            vm.currentPage += 1
+                            vm.fetchAnime(from: "/page-\(vm.currentPage)") {
+                                self.isLoading = false
+                            }
+                        }
+                    }
                 }
             }
             .listStyle(.plain)
@@ -52,7 +61,7 @@ struct MainView: View {
             }
         }
         .onAppear {
-            vm.fetchAnime(from: "/page-1") {
+            vm.fetchAnime(from: "/page-\(vm.currentPage)") {
                 self.isLoading = false
             }
         }
