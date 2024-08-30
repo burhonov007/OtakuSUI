@@ -34,6 +34,15 @@ struct MainView: View {
                     }
                 }
             }
+            .alert(isPresented: $vm.isCatchError, content: {
+                Alert(title: Text("Ошибка соедения с интернетом"), message: Text("Нажмите на кнопку чтобы повторить запрос"), dismissButton: .cancel(Text("Повторить"), action: {
+                    
+                    self.isLoading = true
+                    vm.fetchAnime(from: "/page-\(vm.currentPage)") {
+                        self.isLoading = false
+                    }
+                }))
+            })
             .listStyle(.plain)
             .navigationTitle("Главная")
             .toolbar {
