@@ -30,7 +30,8 @@ struct MainView: View {
                     NavigationLink(destination: {
                         InfoView(
                             animeUrl: searchResults[index]["link"].stringValue,
-                            posterUrl: searchResults[index]["imageUrl"].stringValue
+                            posterUrl: searchResults[index]["imageUrl"].stringValue, 
+                            animeName: searchResults[index]["name"].stringValue
                         )
                     }, label: {
                         AnimeListRow(

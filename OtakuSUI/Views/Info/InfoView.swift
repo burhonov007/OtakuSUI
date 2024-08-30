@@ -11,6 +11,7 @@ struct InfoView: View {
 
     @State var animeUrl: String
     @State var posterUrl: String
+    @State var animeName: String
     @State private var isLoading = false
     @ObservedObject var vm = InfoViewModel()
     
@@ -82,14 +83,17 @@ struct InfoView: View {
                         
                         Spacer()
                         
-                        Button("Смотреть") {
-                            
+                        NavigationLink {
+                            SeriesView(htmlString: vm.htmlString, animeName: animeName)
+                        } label: {
+                            Text("Смотреть")
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(Color.green)
+                            .cornerRadius(5)
                         }
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .padding(10)
-                        .background(Color.green)
-                        .cornerRadius(5)
+
                         
                         
                     }
@@ -113,10 +117,10 @@ struct InfoView: View {
             })
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(vm.info["title"].stringValue)
+        .navigationTitle(animeName)
     }
 }
 
 #Preview {
-    InfoView(animeUrl: "asd", posterUrl: "sadasd")
+    InfoView(animeUrl: "asd", posterUrl: "sadasd", animeName: "asd")
 }

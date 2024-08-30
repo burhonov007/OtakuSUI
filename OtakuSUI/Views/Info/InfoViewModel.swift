@@ -14,6 +14,7 @@ class InfoViewModel: ObservableObject {
     @Published var info: JSON = JSON()
     @Published var isCatchError: Bool = false
     @Published var notLoadedPage: Int = 0
+    @Published var htmlString: String = ""
     
     func fetchInfo(from urlString: String, completion: (()->())? = nil) {
         print("\(urlString)")
@@ -21,6 +22,7 @@ class InfoViewModel: ObservableObject {
             if json["code"].stringValue == "200" && json["message"].stringValue == "success" {
                 let info = Parser.shared.getInfo(from: json["data"].stringValue)
                 self.info = info
+                self.htmlString = json["data"].stringValue
                 completion?()
             } else {
                 self.isCatchError = true
