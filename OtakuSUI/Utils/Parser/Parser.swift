@@ -25,8 +25,6 @@ class Parser {
                     
                     // MARK: - Edit Variables
                     animeLink = animeLink.replacingOccurrences(of: "/", with: "")
-                    animeLink = "https://jut.su/\(animeLink)"
-                    
                     animeSeries = animeSeries.replacingOccurrences(of: "сезона", with: "сезона ")
                     animeSeries = animeSeries.replacingOccurrences(of: "сезонов", with: "сезонов ")
                     animeSeries = animeSeries.replacingOccurrences(of: "серий", with: "серий ")

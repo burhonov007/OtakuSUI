@@ -11,13 +11,12 @@ import SwiftyJSON
 
 public class RequestSender {
     
-    static let serverURL: String = "https://jut.su/anime/"
+    static let serverURL: String = "https://jut.su/"
     
     private let path: String
     private let parameters: Parameters?
     private let method: HTTPMethod
     private let completion: (JSON) -> Void
-    private var timeout = 60
     
     init(path: String, parameters: Parameters? = nil, method: HTTPMethod = .get, completion: @escaping (JSON) -> Void) {
         self.path = path

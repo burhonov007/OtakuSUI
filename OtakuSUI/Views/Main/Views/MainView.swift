@@ -14,20 +14,36 @@ struct MainView: View {
     @ObservedObject var vm = AnimeListViewModel()
     @State private var isLoading = true
     
+    @State private var searchText = ""
+    var searchResults: [JSON] {
+        if searchText.isEmpty {
+            return vm.animeList
+        } else {
+            return vm.animeList.filter { $0["name"].stringValue.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+    
     var body: some View {
         LoadingView(isLoading: $isLoading) {
             List {
-                ForEach(vm.animeList.indices, id: \.self) { index in
-                    AnimeListRow(
-                        imageURL: vm.animeList[index]["imageUrl"].stringValue,
-                        name: vm.animeList[index]["name"].stringValue,
-                        seriesCount: vm.animeList[index]["series"].stringValue
-                    )
+                ForEach(searchResults.indices, id: \.self) { index in
+                    NavigationLink(destination: {
+                        InfoView(
+                            animeUrl: searchResults[index]["link"].stringValue,
+                            posterUrl: searchResults[index]["imageUrl"].stringValue
+                        )
+                    }, label: {
+                        AnimeListRow(
+                            imageURL: searchResults[index]["imageUrl"].stringValue,
+                            name: searchResults[index]["name"].stringValue,
+                            seriesCount: searchResults[index]["series"].stringValue
+                        )
+                    })
                     .onAppear {
                         if index == vm.animeList.count - 1 {
                             self.isLoading = true
                             vm.currentPage += 1
-                            vm.fetchAnime(from: "/page-\(vm.currentPage)") {
+                            vm.fetchAnime(from: "anime/page-\(vm.currentPage)") {
                                 self.isLoading = false
                             }
                         }
@@ -38,7 +54,7 @@ struct MainView: View {
                 Alert(title: Text("Ошибка соедения с интернетом"), message: Text("Нажмите на кнопку чтобы повторить запрос"), dismissButton: .cancel(Text("Повторить"), action: {
                     
                     self.isLoading = true
-                    vm.fetchAnime(from: "/page-\(vm.currentPage)") {
+                    vm.fetchAnime(from: "anime/page-\(vm.currentPage)") {
                         self.isLoading = false
                     }
                 }))
@@ -70,10 +86,11 @@ struct MainView: View {
             }
         }
         .onAppear {
-            vm.fetchAnime(from: "/page-\(vm.currentPage)") {
+            vm.fetchAnime(from: "anime/page-\(vm.currentPage)") {
                 self.isLoading = false
             }
         }
+        .searchable(text: $searchText, prompt: "Введите текст для поиска")
     }
 }
 
