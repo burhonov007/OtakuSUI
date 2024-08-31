@@ -20,7 +20,7 @@ struct InfoView: View {
             ScrollView(.vertical) {
                 VStack {
                     ImageLoaderView(urlString: posterUrl)
-                        .frame(width: 300, height: 300, alignment: .center)
+                        .frame(width: 200, height: 200, alignment: .center)
                         .cornerRadius(15)
                     
                     Spacer()
@@ -122,5 +122,5 @@ struct InfoView: View {
 }
 
 #Preview {
-    InfoView(animeUrl: "asd", posterUrl: "sadasd", animeName: "asd")
+    InfoView(animeUrl: "asd", posterUrl: "https://dummyjson.com/image/150", animeName: "asd")
 }

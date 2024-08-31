@@ -19,6 +19,9 @@ struct ImageLoaderView: View {
         
         WebImage(url: URL(string: urlString)) { image in
             image
+                .interpolation(.high)
+                .antialiased(true)
+                .renderingMode(.original)
         } placeholder: {
             Image(systemName: "photo.artframe")
                 .resizable()
