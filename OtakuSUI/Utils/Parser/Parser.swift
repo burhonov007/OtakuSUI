@@ -23,7 +23,6 @@ class Parser {
                    var animeSeries = animeListElement.at_css(".aailines")?.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                    let imageUrl = animeListElement.at_css(".all_anime_image")?["style"]?.components(separatedBy: "'")[1] {
                     
-                    // MARK: - Edit Variables
                     animeLink = animeLink.replacingOccurrences(of: "/", with: "")
                     animeSeries = animeSeries.replacingOccurrences(of: "сезона", with: "сезона ")
                     animeSeries = animeSeries.replacingOccurrences(of: "сезонов", with: "сезонов ")
@@ -31,7 +30,6 @@ class Parser {
                     animeSeries = animeSeries.replacingOccurrences(of: "серии", with: "серии ")
                     animeSeries = animeSeries.replacingOccurrences(of: "серия", with: "серия ")
                     
-                    // MARK: - Create JSON Object
                     let animeJSON: JSON = [
                         "name": animeName,
                         "link": animeLink,
