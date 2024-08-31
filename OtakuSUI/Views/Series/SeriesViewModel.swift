@@ -16,6 +16,7 @@ class SeriesViewModel: ObservableObject {
     
     func fetchSeries(from htmlString: String, animeName: String) {
         series = Parser.shared.fetchSeries(from: htmlString, animeName: animeName)
+        print(series)
     }
     
 }
