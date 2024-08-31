@@ -22,6 +22,10 @@ class AnimeListViewModel: ObservableObject {
     @Published var isCatchError: Bool = false
     @Published var notLoadedPage: Int = 0
     
+    @Published var selectedGenres: Set<String> = []
+    @Published var selectedReleaseYears: Set<String> = []
+    @Published var selectedSort = ""
+    
     func fetchAnime(from urlString: String, completion: (()->())? = nil) {
         RequestSender(path: urlString) { json in
             if json["code"].stringValue == "200" && json["message"].stringValue == "success" {

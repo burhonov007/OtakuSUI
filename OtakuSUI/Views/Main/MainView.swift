@@ -4,17 +4,15 @@
 //
 //  Created by itserviceimac on 29/08/24.
 //
-
 import SwiftUI
 import SwiftyJSON
-
 
 struct MainView: View {
     
     @ObservedObject var vm = AnimeListViewModel()
     @State private var isLoading = true
-    
     @State private var searchText = ""
+    
     var searchResults: [JSON] {
         if searchText.isEmpty {
             return vm.animeList
@@ -30,7 +28,7 @@ struct MainView: View {
                     NavigationLink(destination: {
                         InfoView(
                             animeUrl: searchResults[index]["link"].stringValue,
-                            posterUrl: searchResults[index]["imageUrl"].stringValue, 
+                            posterUrl: searchResults[index]["imageUrl"].stringValue,
                             animeName: searchResults[index]["name"].stringValue
                         )
                     }, label: {
@@ -41,66 +39,68 @@ struct MainView: View {
                         )
                     })
                     .onAppear {
-                        if index == vm.animeList.count - 1 {
-                            self.isLoading = true
+                        if index == searchResults.count - 1 {
                             vm.currentPage += 1
-                            vm.fetchAnime(from: "anime/page-\(vm.currentPage)") {
-                                self.isLoading = false
-                            }
+                            sendRequest()
                         }
                     }
                 }
             }
             .alert(isPresented: $vm.isCatchError, content: {
-                Alert(title: Text("Ошибка соедения с интернетом"), message: Text("Нажмите на кнопку чтобы повторить запрос"), dismissButton: .cancel(Text("Повторить"), action: {
-                    
-                    self.isLoading = true
-                    vm.fetchAnime(from: "anime/page-\(vm.currentPage)") {
-                        self.isLoading = false
-                    }
+                Alert(title: Text("Ошибка соединения с интернетом"),
+                      message: Text("Нажмите на кнопку, чтобы повторить запрос"),
+                      dismissButton: .cancel(Text("Повторить"), action: {
+                    sendRequest()
                 }))
             })
             .listStyle(.plain)
             .navigationTitle("Главная")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink {
-                        EmptyView()
-                    } label: {
+                    NavigationLink(destination: EmptyView()) {
                         Image(systemName: "star")
                     }
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink {
-                        SortView(sortList: vm.sortList)
-                    } label: {
+                    NavigationLink(destination: SortView(sortList: vm.sortList)) {
                         Image(systemName: "arrow.up.arrow.down")
                     }
                     .navigationTitle("Сортировка")
                     
-                    NavigationLink {
-                        FilterView(releaseYearsList: vm.releaseYearsList, genresList: vm.genreList, typesList: vm.typeList)
-                    } label: {
+                    NavigationLink(destination: FilterView(onFilterSelected: { genres, years in
+                        vm.selectedGenres = genres
+                        vm.selectedReleaseYears = years
+                        
+                        vm.animeList = []
+                        vm.currentPage = 1
+                        sendRequest()
+                    }, releaseYearsList: vm.releaseYearsList, genresList: vm.genreList, typesList: vm.typeList, selectedGenres: $vm.selectedGenres, selectedReleaseYears:  $vm.selectedReleaseYears)) {
                         Image(systemName: "checklist")
                     }
                     .navigationTitle("Фильтр")
                 }
             }
-        }
-        .onAppear {
-            vm.fetchAnime(from: "anime/page-\(vm.currentPage)") {
-                self.isLoading = false
+            .onAppear {
+                sendRequest()
             }
         }
         .searchable(text: $searchText, prompt: "Введите текст для поиска")
     }
+    
+    private func sendRequest() {
+        isLoading = true
+        let genres = vm.selectedGenres.joined(separator: "-")
+        let years = vm.selectedReleaseYears.joined(separator: "-and-")
+        let str = [genres, years].filter { !$0.isEmpty }.joined(separator: "/")
+        vm.fetchAnime(from: "anime/\(str)\(vm.selectedSort)/page-\(vm.currentPage)/") {
+            self.isLoading = false
+        }
+    }
 }
-
 
 #Preview {
     NavigationView {
         MainView()
     }
-    
 }
