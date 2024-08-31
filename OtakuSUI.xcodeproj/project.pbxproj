@@ -27,6 +27,8 @@
 		1CED1D802C830E8C0055C06E /* Parser+Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED1D7F2C830E8C0055C06E /* Parser+Genres.swift */; };
 		1CED1D822C830F4D0055C06E /* Parser+ReleaseYears.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED1D812C830F4D0055C06E /* Parser+ReleaseYears.swift */; };
 		1CED1D842C830FFF0055C06E /* Parser+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED1D832C830FFF0055C06E /* Parser+Types.swift */; };
+		1CED1D872C8311860055C06E /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED1D862C8311860055C06E /* SortView.swift */; };
+		1CED1D892C83126B0055C06E /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CED1D882C83126B0055C06E /* FilterView.swift */; };
 		93646E9FB751F36A03DAF422 /* Pods_OtakuSUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4D5615970C7C2A9CE15D9F /* Pods_OtakuSUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		1CED1D7F2C830E8C0055C06E /* Parser+Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parser+Genres.swift"; sourceTree = "<group>"; };
 		1CED1D812C830F4D0055C06E /* Parser+ReleaseYears.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parser+ReleaseYears.swift"; sourceTree = "<group>"; };
 		1CED1D832C830FFF0055C06E /* Parser+Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parser+Types.swift"; sourceTree = "<group>"; };
+		1CED1D862C8311860055C06E /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
+		1CED1D882C83126B0055C06E /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		3E4D5615970C7C2A9CE15D9F /* Pods_OtakuSUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OtakuSUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		690D10A22C76B56D045A5B79 /* Pods-OtakuSUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OtakuSUI.debug.xcconfig"; path = "Target Support Files/Pods-OtakuSUI/Pods-OtakuSUI.debug.xcconfig"; sourceTree = "<group>"; };
 		6FA976351E62AE3EB5E925AE /* Pods-OtakuSUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OtakuSUI.release.xcconfig"; path = "Target Support Files/Pods-OtakuSUI/Pods-OtakuSUI.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 		1C970F3A2C8081F7004D2D44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1CED1D852C83117B0055C06E /* Sort&Filter */,
 				1C9CC6B22C81D3EE00785576 /* Series */,
 				1C9CC6A82C8189F500785576 /* Info */,
 				1C970F582C809A3C004D2D44 /* Main */,
@@ -185,6 +190,15 @@
 				1C9CC6B52C81D42100785576 /* SeriesViewModel.swift */,
 			);
 			path = Series;
+			sourceTree = "<group>";
+		};
+		1CED1D852C83117B0055C06E /* Sort&Filter */ = {
+			isa = PBXGroup;
+			children = (
+				1CED1D862C8311860055C06E /* SortView.swift */,
+				1CED1D882C83126B0055C06E /* FilterView.swift */,
+			);
+			path = "Sort&Filter";
 			sourceTree = "<group>";
 		};
 		FCABC6D8010EC694E86D6B03 /* Frameworks */ = {
@@ -317,6 +331,7 @@
 				1C9CC6AD2C818A4300785576 /* InfoView.swift in Sources */,
 				1C9CC6B82C81D62A00785576 /* Parser+Series.swift in Sources */,
 				1C970F572C8099EC004D2D44 /* ImageLoaderView.swift in Sources */,
+				1CED1D892C83126B0055C06E /* FilterView.swift in Sources */,
 				1C9CC6B42C81D3FA00785576 /* SeriesView.swift in Sources */,
 				1C970F5E2C809D91004D2D44 /* LoadingView.swift in Sources */,
 				1C970F522C808A78004D2D44 /* Parser.swift in Sources */,
@@ -327,6 +342,7 @@
 				1C56421C2C80724300C52FA6 /* OtakuSUIApp.swift in Sources */,
 				1CED1D7C2C830B870055C06E /* Parser+Sort.swift in Sources */,
 				1CED1D822C830F4D0055C06E /* Parser+ReleaseYears.swift in Sources */,
+				1CED1D872C8311860055C06E /* SortView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

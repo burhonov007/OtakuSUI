@@ -73,16 +73,18 @@ struct MainView: View {
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink {
-                        EmptyView()
+                        SortView(sortList: vm.sortList)
                     } label: {
                         Image(systemName: "arrow.up.arrow.down")
                     }
+                    .navigationTitle("Сортировка")
                     
                     NavigationLink {
-                        EmptyView()
+                        FilterView(releaseYearsList: vm.releaseYearsList, genresList: vm.genreList, typesList: vm.typeList)
                     } label: {
                         Image(systemName: "checklist")
                     }
+                    .navigationTitle("Фильтр")
                 }
             }
         }
