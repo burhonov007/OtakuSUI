@@ -21,13 +21,35 @@ extension Parser {
                 "releaseYears": "\(extractYearOfIssue(from: doc))",
                 "genres": "\(extractGenre(from: doc))",
                 "rating": "\(extractRating(from: doc))",
-                "ageLimit": "\(extractAgeRating(from: doc))"
+                "ageLimit": "\(extractAgeRating(from: doc))",
+                "desc": "\(extractDesc(doc: doc))"
             }
             """)
         }
         return json
     }
- 
+    
+    private func extractDesc(doc: HTMLDocument) -> String {
+        if let pElement = doc.at_css("p.under_video.uv_rounded_bottom.the_hildi") {
+            if let spanElement = pElement.at_css("span") {
+                var spanText = spanElement.text ?? ""
+                
+                spanText = spanText.replacingOccurrences(of: "<b>", with: "")
+                spanText = spanText.replacingOccurrences(of: "</b>", with: "")
+                
+                let regexPattern = "<i>[^<]*</i>"
+                if let regex = try? NSRegularExpression(pattern: regexPattern, options: .caseInsensitive) {
+                    spanText = regex.stringByReplacingMatches(in: spanText, options: [], range: NSRange(location: 0, length: spanText.count), withTemplate: "")
+                }
+                
+                spanText = spanText.trimmingCharacters(in: .whitespacesAndNewlines)
+                
+                return spanText
+            }
+        }
+        return ""
+    }
+    
     
     private func extractAgeRating(from doc: HTMLDocument) -> String {
         if let aniAgeRating = doc.at_css("span.age_rating_all") {

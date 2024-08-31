@@ -28,6 +28,8 @@ class Parser {
                     animeSeries = animeSeries.replacingOccurrences(of: "сезона", with: "сезона ")
                     animeSeries = animeSeries.replacingOccurrences(of: "сезонов", with: "сезонов ")
                     animeSeries = animeSeries.replacingOccurrences(of: "серий", with: "серий ")
+                    animeSeries = animeSeries.replacingOccurrences(of: "серии", with: "серии ")
+                    animeSeries = animeSeries.replacingOccurrences(of: "серия", with: "серия ")
                     
                     // MARK: - Create JSON Object
                     let animeJSON: JSON = [

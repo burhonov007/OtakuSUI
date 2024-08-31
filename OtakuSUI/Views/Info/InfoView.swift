@@ -13,8 +13,9 @@ struct InfoView: View {
     @State var posterUrl: String
     @State var animeName: String
     @State private var isLoading = false
+    @State private var isDescriptionVisible: Bool = false
     @ObservedObject var vm = InfoViewModel()
-    
+   
     var body: some View {
         LoadingView(isLoading: $isLoading) {
             ScrollView(.vertical) {
@@ -27,7 +28,6 @@ struct InfoView: View {
                     VStack(alignment: .leading, spacing: 5) {
                         HStack(alignment: .bottom) {
                             Text("Название:")
-                                .padding(.leading, 10)
                             Text(vm.info["title"].stringValue)
                                 .font(.title2)
                         }
@@ -35,7 +35,6 @@ struct InfoView: View {
                         Spacer()
                         HStack(alignment: .firstTextBaseline) {
                             Text("Жанры:")
-                                .padding(.leading, 10)
                             Text(vm.info["genres"].stringValue)
                                 .font(.subheadline)
                                 .lineLimit(2)
@@ -44,7 +43,6 @@ struct InfoView: View {
                         Spacer()
                         HStack(alignment: .firstTextBaseline) {
                             Text("Рейтинг:")
-                                .padding(.leading, 10)
                             Text(vm.info["rating"].stringValue)
                                 .font(.subheadline)
                                 .lineLimit(2)
@@ -53,7 +51,6 @@ struct InfoView: View {
                         Spacer()
                         HStack(alignment: .firstTextBaseline) {
                             Text("Возрастной рейтинг:")
-                                .padding(.leading, 10)
                             Text(vm.info["ageLimit"].stringValue)
                                 .font(.subheadline)
                                 .lineLimit(2)
@@ -62,10 +59,27 @@ struct InfoView: View {
                         Spacer()
                         HStack(alignment: .firstTextBaseline) {
                             Text("Годы выпуска:")
-                                .padding(.leading, 10)
                             Text(vm.info["releaseYears"].stringValue)
                                 .font(.subheadline)
                                 .lineLimit(2)
+                        }
+                        
+                        
+                        Spacer()
+                        HStack(alignment: .firstTextBaseline) {
+                            Text("Описание:")
+                            Spacer()
+                            Button(action: {
+                                isDescriptionVisible.toggle()
+                            }, label: {
+                                Text(isDescriptionVisible ? "Скрыть" : "Показать")
+                            })
+                        }
+                        
+                        Spacer()
+                        
+                        if isDescriptionVisible {
+                            Text(vm.info["desc"].stringValue)
                         }
                         
                         Spacer()
