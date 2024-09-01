@@ -17,6 +17,10 @@
 		1C970F572C8099EC004D2D44 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C970F562C8099EC004D2D44 /* ImageLoaderView.swift */; };
 		1C970F5C2C809A6E004D2D44 /* AnimeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C970F5B2C809A6E004D2D44 /* AnimeListViewModel.swift */; };
 		1C970F5E2C809D91004D2D44 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C970F5D2C809D91004D2D44 /* LoadingView.swift */; };
+		1C971B9F2C846E3500E24C93 /* QualitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C971B9E2C846E3500E24C93 /* QualitiesView.swift */; };
+		1C971BA12C84703100E24C93 /* QualitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C971BA02C84703100E24C93 /* QualitiesViewModel.swift */; };
+		1C971BA32C8470D000E24C93 /* Parser+Qualities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C971BA22C8470D000E24C93 /* Parser+Qualities.swift */; };
+		1C971BA52C84774000E24C93 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C971BA42C84774000E24C93 /* VideoPlayerView.swift */; };
 		1C9CC6AD2C818A4300785576 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9CC6AC2C818A4300785576 /* InfoView.swift */; };
 		1C9CC6AF2C8194BC00785576 /* InfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9CC6AE2C8194BC00785576 /* InfoViewModel.swift */; };
 		1C9CC6B12C81968600785576 /* Parser+Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9CC6B02C81968600785576 /* Parser+Info.swift */; };
@@ -44,6 +48,10 @@
 		1C970F562C8099EC004D2D44 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
 		1C970F5B2C809A6E004D2D44 /* AnimeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeListViewModel.swift; sourceTree = "<group>"; };
 		1C970F5D2C809D91004D2D44 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		1C971B9E2C846E3500E24C93 /* QualitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualitiesView.swift; sourceTree = "<group>"; };
+		1C971BA02C84703100E24C93 /* QualitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualitiesViewModel.swift; sourceTree = "<group>"; };
+		1C971BA22C8470D000E24C93 /* Parser+Qualities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parser+Qualities.swift"; sourceTree = "<group>"; };
+		1C971BA42C84774000E24C93 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		1C9CC6AC2C818A4300785576 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		1C9CC6AE2C8194BC00785576 /* InfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewModel.swift; sourceTree = "<group>"; };
 		1C9CC6B02C81968600785576 /* Parser+Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parser+Info.swift"; sourceTree = "<group>"; };
@@ -124,10 +132,12 @@
 		1C970F3A2C8081F7004D2D44 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1C971B9D2C846E2A00E24C93 /* Qualities */,
 				1CED1D852C83117B0055C06E /* Sort&Filter */,
 				1C9CC6B22C81D3EE00785576 /* Series */,
 				1C9CC6A82C8189F500785576 /* Info */,
 				1C970F582C809A3C004D2D44 /* Main */,
+				1C971BA42C84774000E24C93 /* VideoPlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +162,7 @@
 				1CED1D7F2C830E8C0055C06E /* Parser+Genres.swift */,
 				1CED1D812C830F4D0055C06E /* Parser+ReleaseYears.swift */,
 				1CED1D832C830FFF0055C06E /* Parser+Types.swift */,
+				1C971BA22C8470D000E24C93 /* Parser+Qualities.swift */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
@@ -172,6 +183,15 @@
 				1C970F4D2C80860D004D2D44 /* AnimeListRow.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		1C971B9D2C846E2A00E24C93 /* Qualities */ = {
+			isa = PBXGroup;
+			children = (
+				1C971B9E2C846E3500E24C93 /* QualitiesView.swift */,
+				1C971BA02C84703100E24C93 /* QualitiesViewModel.swift */,
+			);
+			path = Qualities;
 			sourceTree = "<group>";
 		};
 		1C9CC6A82C8189F500785576 /* Info */ = {
@@ -334,7 +354,9 @@
 				1CED1D892C83126B0055C06E /* FilterView.swift in Sources */,
 				1C9CC6B42C81D3FA00785576 /* SeriesView.swift in Sources */,
 				1C970F5E2C809D91004D2D44 /* LoadingView.swift in Sources */,
+				1C971B9F2C846E3500E24C93 /* QualitiesView.swift in Sources */,
 				1C970F522C808A78004D2D44 /* Parser.swift in Sources */,
+				1C971BA32C8470D000E24C93 /* Parser+Qualities.swift in Sources */,
 				1CED1D802C830E8C0055C06E /* Parser+Genres.swift in Sources */,
 				1C970F5C2C809A6E004D2D44 /* AnimeListViewModel.swift in Sources */,
 				1C9CC6B12C81968600785576 /* Parser+Info.swift in Sources */,
@@ -342,7 +364,9 @@
 				1C56421C2C80724300C52FA6 /* OtakuSUIApp.swift in Sources */,
 				1CED1D7C2C830B870055C06E /* Parser+Sort.swift in Sources */,
 				1CED1D822C830F4D0055C06E /* Parser+ReleaseYears.swift in Sources */,
+				1C971BA12C84703100E24C93 /* QualitiesViewModel.swift in Sources */,
 				1CED1D872C8311860055C06E /* SortView.swift in Sources */,
+				1C971BA52C84774000E24C93 /* VideoPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +507,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,7 +538,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

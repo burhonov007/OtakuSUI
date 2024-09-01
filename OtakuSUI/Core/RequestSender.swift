@@ -17,6 +17,7 @@ public class RequestSender {
     private let parameters: Parameters?
     private let method: HTTPMethod
     private let completion: (JSON) -> Void
+    static let userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.0.0 Safari/537.36 OPR/100.0.0.0"
     
     init(path: String, parameters: Parameters? = nil, method: HTTPMethod = .get, completion: @escaping (JSON) -> Void) {
         self.path = path
@@ -34,8 +35,11 @@ public class RequestSender {
             return
         }
         
-        let request = AF.request(url, method: method, parameters: parameters)
+        let headers: HTTPHeaders = [
+            "User-Agent": RequestSender.userAgent
+        ]
         
+        let request = AF.request(url, method: method, parameters: parameters, headers: headers)
         request.responseData { response in
             var json: JSON
             
