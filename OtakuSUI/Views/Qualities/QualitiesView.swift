@@ -30,7 +30,6 @@ struct QualitiesView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            print(episodeLink)
             vm.fetchQualities(from: episodeLink)
         }
     }

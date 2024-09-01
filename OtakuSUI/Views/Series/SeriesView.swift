@@ -37,7 +37,6 @@ struct SeriesView: View {
         }
         .onAppear {
             vm.fetchSeries(from: htmlString, animeName: animeName)
-            print(vm.series)
         }
     }
 }
