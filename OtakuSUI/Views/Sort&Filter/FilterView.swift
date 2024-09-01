@@ -83,10 +83,6 @@ struct FilterView: View {
         .onDisappear {
             onFilterSelected(selectedGenres, selectedReleaseYears)
         }
-        .onAppear {
-            print(selectedGenres)
-            print(selectedReleaseYears)
-        }
         .toolbar {
             Button {
                 selectedGenres = []
@@ -104,7 +100,6 @@ struct FilterView: View {
         } else {
             set.insert(item["link"].stringValue)
         }
-        print(set)
     }
 }
 

@@ -9,8 +9,12 @@ import SwiftyJSON
 
 struct MainView: View {
     
+    init() {
+        sendRequest()
+    }
+    
     @ObservedObject var vm = AnimeListViewModel()
-    @State private var isLoading = true
+    @State private var isLoading = false
     @State private var searchText = ""
     
     var searchResults: [JSON] {
@@ -63,7 +67,10 @@ struct MainView: View {
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: SortView(sortList: vm.sortList)) {
+                    NavigationLink(destination: SortView(sortList: vm.sortList, selectedSort: $vm.selectedSort, onSortSelected: { str in
+                        vm.selectedSort = str
+                        sendRequest(cleanList: true)
+                    })) {
                         Image(systemName: "arrow.up.arrow.down")
                     }
                     .navigationTitle("Сортировка")
@@ -72,29 +79,30 @@ struct MainView: View {
                         vm.selectedGenres = genres
                         vm.selectedReleaseYears = years
                         
-                        vm.animeList = []
-                        vm.currentPage = 1
-                        sendRequest()
+                        sendRequest(cleanList: true)
                     }, releaseYearsList: vm.releaseYearsList, genresList: vm.genreList, typesList: vm.typeList, selectedGenres: $vm.selectedGenres, selectedReleaseYears:  $vm.selectedReleaseYears)) {
                         Image(systemName: "checklist")
                     }
                     .navigationTitle("Фильтр")
                 }
             }
-            .onAppear {
-                sendRequest()
-            }
         }
         .searchable(text: $searchText, prompt: "Введите текст для поиска")
     }
     
-    private func sendRequest() {
-        isLoading = true
+    private func sendRequest(cleanList: Bool = false) {
+        if cleanList {
+            vm.currentPage = 1
+            vm.animeList = []
+        }
         let genres = vm.selectedGenres.joined(separator: "-")
         let years = vm.selectedReleaseYears.joined(separator: "-and-")
         let str = [genres, years].filter { !$0.isEmpty }.joined(separator: "/")
-        vm.fetchAnime(from: "anime/\(str)\(vm.selectedSort)/page-\(vm.currentPage)/") {
-            self.isLoading = false
+        isLoading = true
+        vm.fetchAnime(from: "anime/\(str)/\(vm.selectedSort)/page-\(vm.currentPage)/") {
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
         }
     }
 }
